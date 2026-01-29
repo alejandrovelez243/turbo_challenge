@@ -6,7 +6,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCategories } from "@/services/api/categories";
 import { getNotes, deleteNote, NotesFilter } from "@/services/api/notes";
 import { logout } from "@/services/api/auth";
-import { NoteCard } from "@/components/NoteCard";
+import { NoteCard } from "@/components/NoteCard/NoteCard";
 import { NoteModal } from "@/components/modals/NewNoteModal";
 import { NewCategoryModal } from "@/components/modals/NewCategoryModal";
 import { Plus, Search, LogOut } from "lucide-react";

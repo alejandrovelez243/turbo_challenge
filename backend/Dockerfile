@@ -1,4 +1,5 @@
-FROM python:3.13-slim
+# Build stage
+FROM python:3.13-slim AS builder
 
 WORKDIR /app
 
@@ -15,17 +16,44 @@ RUN apt-get update && apt-get install -y \
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-# Copy dependency files first for better caching
+# Copy dependency files
 COPY pyproject.toml uv.lock ./
 
-# Install dependencies
-RUN uv sync --frozen
+# Install dependencies (no dev groups)
+RUN uv sync --frozen --no-dev
+
+# Final stage
+FROM python:3.13-slim
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed dependencies from builder
+COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder /bin/uv /bin/uv
 
 # Copy project
 COPY . .
 
+# Path setup for uv
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Make entrypoint executable
+RUN chmod +x scripts/entrypoint.sh
+
 # Expose port
 EXPOSE 8000
 
-# Run application with uv
-CMD ["uv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Use entrypoint script
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
+
+# Run with Gunicorn and Uvicorn workers for async support
+CMD ["uv", "run", "gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "core.asgi:application"]

@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeClosed } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "@/services/api/auth";
-import styles from "./login.module.css";
+import { AuthLayout } from "@/components/auth/AuthLayout/AuthLayout";
+import { Input } from "@/components/ui/Input/Input";
+import { Button } from "@/components/ui/Button/Button";
+import { AxiosError } from "axios";
+import styles from "./auth-page.module.css";
 
 export default function LoginPage() {
     const router = useRouter();
-    const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -21,7 +22,7 @@ export default function LoginPage() {
         onSuccess: () => {
             router.push("/dashboard");
         },
-        onError: (err: Error & { response?: { data?: { non_field_errors?: string[] } } }) => {
+        onError: (err: AxiosError<{ non_field_errors?: string[] }>) => {
             setError(err.response?.data?.non_field_errors?.[0] || "Invalid credentials. Please try again.");
         },
     });
@@ -30,12 +31,10 @@ export default function LoginPage() {
         e.preventDefault();
         setError("");
 
-        // Custom validation
         if (!email.trim()) {
             setError("Please enter your email address.");
             return;
         }
-        // Basic email format validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setError("Please enter a valid email address.");
@@ -49,73 +48,38 @@ export default function LoginPage() {
         loginMutation.mutate({ email, password });
     };
 
-
     return (
-        <main className={styles.container}>
-            {/* Design Image: Cactus for Login */}
-            <div className={styles.logoWrapper}>
-                <Image
-                    src="/pets/cactus.png"
-                    alt="Welcome"
-                    width={96}
-                    height={114}
-                    priority
-                />
-            </div>
-
-            <h1 className={styles.title}>Yay, You&apos;re Back!</h1>
-
-            {error && <p className={styles.errorText}>{error}</p>}
-
+        <AuthLayout
+            title="Yay, You're Back!"
+            imageSrc="/pets/cactus.png"
+            imageAlt="Welcome"
+            imageWidth={96}
+            imageHeight={114}
+            error={error}
+        >
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
-                <div className={styles.inputGroup}>
-                    <div className={styles.inputWrapper}>
-                        <input
-                            type="email"
-                            placeholder="Email address"
-                            className={styles.input}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                </div>
+                <Input
+                    type="email"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-                <div className={styles.inputGroup}>
-                    <div className={styles.inputWrapper}>
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Password"
-                            className={styles.input}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className={styles.eyeButton}
-                            data-testid="password-toggle"
-                        >
-                            {showPassword ? (
-                                <Eye size={20} color="#957139" />
-                            ) : (
-                                <EyeClosed size={20} color="#957139" />
-                            )}
-                        </button>
-                    </div>
-                </div>
+                <Input
+                    isPassword
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                <button
-                    type="submit"
-                    className={styles.button}
-                    disabled={loginMutation.isPending}
-                >
-                    {loginMutation.isPending ? "Logging in..." : "Login"}
-                </button>
+                <Button type="submit" isLoading={loginMutation.isPending}>
+                    Login
+                </Button>
 
                 <Link href="/register" className={styles.footerText}>
                     Oops! I&apos;ve never been here before
                 </Link>
             </form>
-        </main>
+        </AuthLayout>
     );
 }

@@ -14,7 +14,8 @@ description: Best practices for Next.js and React development for this project.
 
 ### 1. File Structure
 - `src/app/` -> Pages (App Router).
-- `src/components/` -> Reusable UI components.
+- `src/components/` -> Folder-based reusable components.
+  - **Rule**: Every component must have its own folder containing `ComponentName.tsx` and `ComponentName.module.css`.
 - `src/services/` -> API calls.
 - `src/types/` -> TypeScript interfaces.
 

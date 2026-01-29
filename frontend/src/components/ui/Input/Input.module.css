@@ -1,0 +1,58 @@
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid #957139;
+    border-radius: 6px;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.inputWrapper:focus-within {
+    outline: 2px solid #88642a;
+    border-color: transparent;
+}
+
+.inputWrapper.error {
+    border-color: #cc0000;
+}
+
+.input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    color: #000000;
+    height: 100%;
+}
+
+.input::placeholder {
+    color: #000000;
+    opacity: 0.6;
+}
+
+.eyeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: #957139;
+}
+
+.errorText {
+    color: #cc0000;
+    font-family: var(--font-secondary);
+    font-size: 12px;
+}

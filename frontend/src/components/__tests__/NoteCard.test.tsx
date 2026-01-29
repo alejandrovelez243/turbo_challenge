@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { NoteCard } from '../NoteCard';
+import { NoteCard } from "../NoteCard/NoteCard";
 
 const mockNote = {
     title: 'Test Note Title',
