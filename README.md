@@ -112,9 +112,21 @@ The hooks include:
 This project was developed using a cutting-edge **AI-First workflow**, leveraging advanced agentic tools to achieve high velocity and technical excellence.
 
 ### 🤖 AI Tools Used
-- **Antigravity (Google DeepMind)**: The primary agentic AI coding assistant used for the entire development lifecycle. It handled everything from initial scaffolding and refactoring to complex troubleshooting of Docker/Railway deployments.
-- **Pencil.dev (Pencil MCP)**: Used to achieve **pixel-perfect UI**. Pencil allowed for direct interaction with the design system, ensuring that the React/Tailwind components matched the intended "aesthetic" vision with high precision.
+- **Antigravity**: The primary agentic AI coding assistant used for the entire development lifecycle.
+- **Agentic Skills & Rules**: Custom **Agent Skills** (located in `.agent/skills/`) were implemented to enforce best practices. These skills provided Antigravity with specialized workflows for Django and Next.js, ensuring clean architecture and consistent code quality.
+- **Pencil.dev (Pencil MCP)**: Used to achieve **pixel-perfect UI**. Pencil allowed for direct interaction with the design system during development.
 - **Railway MCP**: Integrated directly into the workflow to manage environments and monitor deployments.
+
+---
+
+## 🚀 Deployment
+
+The application is deployed using a modern, decoupled infrastructure:
+- **Frontend (Next.js)**: Deployed on **Vercel** for optimal performance and edge features.
+- **Backend (Django)**: Deployed on **Railway** using an optimized Docker multi-stage build.
+- **Database**: PostgreSQL managed by Railway.
+
+---
 
 ### 🛣️ Development Process
 1.  **Iterative Planning**: Used Antigravity to draft implementation plans and architecture before writing code.
