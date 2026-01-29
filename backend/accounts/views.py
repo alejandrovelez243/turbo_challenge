@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import authenticate
 from drf_spectacular.utils import OpenApiResponse, extend_schema
 from rest_framework import generics, status
@@ -6,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import LoginSerializer, SignUpSerializer, UserSerializer
+
+logger = logging.getLogger(__name__)
 
 
 class SignUpView(generics.CreateAPIView):
@@ -57,6 +61,7 @@ class LoginView(APIView):
         },
     )
     def post(self, request, *args, **kwargs):
+        logger.info(f"Login attempt: {request.data}")
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
