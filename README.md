@@ -107,6 +107,33 @@ The hooks include:
 
 ---
 
+## 🧠 Process & AI Tools
+
+This project was developed using a cutting-edge **AI-First workflow**, leveraging advanced agentic tools to achieve high velocity and technical excellence.
+
+### 🤖 AI Tools Used
+- **Antigravity (Google DeepMind)**: The primary agentic AI coding assistant used for the entire development lifecycle. It handled everything from initial scaffolding and refactoring to complex troubleshooting of Docker/Railway deployments.
+- **Pencil.dev (Pencil MCP)**: Used to achieve **pixel-perfect UI**. Pencil allowed for direct interaction with the design system, ensuring that the React/Tailwind components matched the intended "aesthetic" vision with high precision.
+- **Railway MCP**: Integrated directly into the workflow to manage environments and monitor deployments.
+
+### 🛣️ Development Process
+1.  **Iterative Planning**: Used Antigravity to draft implementation plans and architecture before writing code.
+2.  **Design-to-Code**: Leveraged Pencil.dev to translate design tokens into reusable UI components.
+3.  **Robust Backend**: Built a Django API from scratch, focusing on secure authentication and clean data models.
+4.  **Full-Stack Sync**: Continuous integration between the backend API and Next.js frontend, verified by automated E2E tests.
+5.  **DevOps Excellence**: Configured Docker for consistent local development and a optimized multi-stage build for Railway.
+
+---
+
+## 🛠️ Technical Decisions
+
+- **Dependency Management**: We chose **`uv`** for the backend to ensure nearly instantaneous installs and deterministic builds.
+- **Production Server**: Configured **Gunicorn** with **Uvicorn workers**. This hybrid setup provides the stability of Gunicorn with the asynchronous performance of Uvicorn, ideal for Django's ASGI features.
+- **Static Assets**: Implemented **WhiteNoise** for static file serving. This removes the need for a separate Nginx container on Railway, simplifying the architecture without sacrificing performance.
+- **CI/CD**: A "Quality First" approach with GitHub Actions that blocks deployments if lints, unit tests, or visual regression tests fail.
+
+---
+
 ## 📝 Features
 - **Email-based Auth**: Secure login and signup.
 - **Smart Categories**: Default categories created automatically for new users ("Random Thoughts", "School", "Personal").
