@@ -1,9 +1,9 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv provided by the system is not available, so we install it.
+# Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-# Copy dependency files
+# Copy dependency files first for better caching
 COPY pyproject.toml uv.lock ./
 
 # Install dependencies
@@ -24,6 +24,8 @@ RUN uv sync --frozen
 # Copy project
 COPY . .
 
-# Run application
-# We use `uv run` to ensure we use the virtual environment
+# Expose port
+EXPOSE 8000
+
+# Run application with uv
 CMD ["uv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
