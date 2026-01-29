@@ -93,6 +93,7 @@ export default function LoginPage() {
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
                             className={styles.eyeButton}
+                            data-testid="password-toggle"
                         >
                             {showPassword ? (
                                 <Eye size={20} color="#957139" />

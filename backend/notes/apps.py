@@ -6,4 +6,4 @@ class NotesConfig(AppConfig):
     name = "notes"
 
     def ready(self):
-        pass
+        import notes.signals  # noqa

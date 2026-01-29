@@ -10,8 +10,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test",
-    "test:visual": "playwright test e2e/visual.spec.ts",
+    "test:e2e": "playwright test --grep-invert visual",
+    "test:visual": "playwright test visual.spec.ts",
     "test:visual:update": "playwright test e2e/visual.spec.ts --update-snapshots"
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",

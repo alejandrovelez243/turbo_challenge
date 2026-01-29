@@ -33,7 +33,7 @@ services:
     env_file:
       - ./backend/.env
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 10s
       timeout: 5s
       retries: 5

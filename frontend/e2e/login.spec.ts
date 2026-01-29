@@ -38,7 +38,7 @@ test.describe('Login Page', () => {
         await expect(passwordInput).toHaveAttribute('type', 'password');
 
         // Click eye button to show
-        await page.locator('button').filter({ has: page.locator('svg') }).last().click();
+        await page.getByTestId('password-toggle').click();
         await expect(passwordInput).toHaveAttribute('type', 'text');
     });
 
