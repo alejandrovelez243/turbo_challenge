@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-# Copy dependency files
-COPY pyproject.toml uv.lock ./
+# Copy dependency files from backend directory
+COPY backend/pyproject.toml backend/uv.lock ./
 
 # Install dependencies (no dev groups)
 RUN uv sync --frozen --no-dev
@@ -40,8 +40,8 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /app/.venv /app/.venv
 COPY --from=builder /bin/uv /bin/uv
 
-# Copy project
-COPY . .
+# Copy project files from backend directory
+COPY backend/ .
 
 # Path setup for uv
 ENV PATH="/app/.venv/bin:$PATH"
