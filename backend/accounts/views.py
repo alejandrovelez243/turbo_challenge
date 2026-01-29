@@ -61,7 +61,7 @@ class LoginView(APIView):
         },
     )
     def post(self, request, *args, **kwargs):
-        logger.info(f"Login attempt: {request.data}")
+        logger.info("Login attempt")
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
