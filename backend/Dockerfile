@@ -43,6 +43,9 @@ COPY --from=builder /bin/uv /bin/uv
 # Copy project files from backend directory
 COPY backend/ .
 
+# Run collectstatic during build
+RUN uv run python manage.py collectstatic --noinput
+
 # Path setup for uv
 ENV PATH="/app/.venv/bin:$PATH"
 

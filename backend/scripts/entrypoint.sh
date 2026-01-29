@@ -3,12 +3,6 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Run collectstatic if in production
-if [ "$DEBUG" = "False" ] || [ "$DEBUG" = "false" ]; then
-    echo "Collecting static files..."
-    uv run python manage.py collectstatic --noinput
-fi
-
 # Run migrations
 echo "Applying database migrations..."
 uv run python manage.py migrate --noinput
