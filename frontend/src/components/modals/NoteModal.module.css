@@ -1,0 +1,309 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Modal Container - Cream background like the main app */
+.modalContainer {
+    width: 90vw;
+    max-width: 1280px;
+    height: 90vh;
+    max-height: 832px;
+    background-color: #faf1e3;
+    border-radius: 8px;
+    padding: 33px 44px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+/* Header with Dropdown and Close */
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.categoryDropdownWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 15px;
+    border: 1px solid #957139;
+    border-radius: 6px;
+    background: transparent;
+    width: 225px;
+}
+
+.categoryDot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.categoryDropdown {
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    color: #000000;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    padding-right: 20px;
+}
+
+.dropdownIcon {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    color: #000000;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeBtn:hover {
+    opacity: 1;
+}
+
+/* Inner Note Card */
+.noteCard {
+    flex: 1;
+    border-radius: 11px;
+    padding: 39px 64px 64px;
+    position: relative;
+    box-shadow: 1px 1px 1.75px rgba(0, 0, 0, 0.25);
+    border: 3px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+}
+
+.lastEdited {
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    color: #000000;
+    text-align: right;
+}
+
+.errorText {
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    color: #cc0000;
+    text-align: center;
+    padding: 8px 16px;
+    background-color: rgba(204, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+.titleInput {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    outline: none;
+    padding: 0;
+}
+
+.titleInput::placeholder {
+    color: #00000060;
+}
+
+.bodyTextarea {
+    width: 100%;
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000000;
+    outline: none;
+    resize: none;
+    padding: 0;
+}
+
+.bodyTextarea::placeholder {
+    color: #00000060;
+}
+
+.saveBtn {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.saveBtn:hover {
+    transform: scale(1.05);
+}
+
+.saveBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Original Modal Styles (for NewCategoryModal) */
+.modal {
+    background-color: #faf1e3;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header h2 {
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+}
+
+.modal .closeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 4px;
+}
+
+.modal .closeBtn:hover {
+    opacity: 1;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+    padding: 12px 16px;
+    border: 1px solid #957139;
+    border-radius: 8px;
+    background-color: transparent;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    color: #000000;
+}
+
+.inputGroup input::placeholder,
+.inputGroup textarea::placeholder {
+    color: #95713980;
+}
+
+.inputGroup textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.colorPicker {
+    display: flex;
+    gap: 12px;
+}
+
+.colorDot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.colorDot:hover {
+    transform: scale(1.1);
+}
+
+.colorDot.active {
+    border-color: #000000;
+    transform: scale(1.15);
+}
+
+.modal .submitBtn {
+    padding: 14px 24px;
+    background-color: #957139;
+    color: #ffffff;
+    border: none;
+    border-radius: 99px;
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: static;
+    width: 100%;
+    height: auto;
+}
+
+.modal .submitBtn:hover {
+    background-color: #7a5a2d;
+}
+
+.modal .submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

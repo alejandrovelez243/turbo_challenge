@@ -1,0 +1,77 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 11px;
+    border: 3px solid;
+    box-shadow: 1px 1px 1.75px rgba(0, 0, 0, 0.25);
+    gap: 12px;
+    width: 303px;
+    height: 246px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 15px;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111111;
+    opacity: 0.3;
+    transition: opacity 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.deleteBtn:hover {
+    opacity: 1;
+    color: #cc0000;
+}
+
+.date {
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.date strong {
+    font-weight: 700;
+}
+
+.title {
+    font-family: var(--font-primary);
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.content {
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    color: #000000;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
